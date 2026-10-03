@@ -1,0 +1,240 @@
+{
+  "info": {
+    "_postman_id": "lab8-k8s-campusconnect-202512024",
+    "name": "Lab 8 - Kubernetes Microservices, CI/CD & Monitoring (Roll No: 202512024)",
+    "description": "Postman Collection for Web Services & SOA Lab 8: Kubernetes Orchestration, Service Discovery, Self-Healing, Prometheus & Grafana Monitoring. Base URL targets the API Gateway deployed in the lab8 Kubernetes namespace.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string",
+      "description": "API Gateway Entry Point (port-forward 8080:8080 or NodePort http://localhost:30080)"
+    },
+    {
+      "key": "prometheus_url",
+      "value": "http://localhost:9090",
+      "type": "string",
+      "description": "Prometheus Server UI"
+    },
+    {
+      "key": "grafana_url",
+      "value": "http://localhost:3000",
+      "type": "string",
+      "description": "Grafana Dashboard UI"
+    }
+  ],
+  "item": [
+    {
+      "name": "0. Gateway System, Health & Metrics",
+      "item": [
+        {
+          "name": "GET Gateway Health Check (/health)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Checks API Gateway status and internal Kubernetes DNS service locations."
+          },
+          "response": []
+        },
+        {
+          "name": "GET Gateway Prometheus Metrics (/metrics)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/metrics",
+              "host": ["{{base_url}}"],
+              "path": ["metrics"]
+            },
+            "description": "Scraped by Prometheus server to monitor traffic rate, errors, and latency."
+          },
+          "response": []
+        },
+        {
+          "name": "GET Gateway Directory Overview (/)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "1. User Service (via Gateway /users)",
+      "item": [
+        {
+          "name": "GET All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users/1",
+              "host": ["{{base_url}}"],
+              "path": ["users", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Vikram Sharma\",\n  \"email\": \"vikram.sharma@daiict.ac.in\",\n  \"role\": \"Student\",\n  \"department\": \"Information Technology\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Product Service (via Gateway /products)",
+      "item": [
+        {
+          "name": "GET All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": ["{{base_url}}"],
+              "path": ["products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Product by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/101",
+              "host": ["{{base_url}}"],
+              "path": ["products", "101"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Order Service (via Gateway /orders)",
+      "item": [
+        {
+          "name": "GET All Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": ["{{base_url}}"],
+              "path": ["orders"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Create Order (Inter-Service Orchestration)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"productId\": 101,\n  \"quantity\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": ["{{base_url}}"],
+              "path": ["orders"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Controlled Monitoring & Error Experiments",
+      "item": [
+        {
+          "name": "GET Non-Existent Route (Generate 404 for Metrics)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/invalid-test-route",
+              "host": ["{{base_url}}"],
+              "path": ["invalid-test-route"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Invalid Payload (Generate 400 Validation Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"A\",\n  \"email\": \"not-a-valid-email\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
