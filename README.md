@@ -1,9 +1,7 @@
 # Lab 8: Kubernetes Orchestration, Basic CI/CD & Monitoring with Prometheus & Grafana
 
 **Web Services & SOA Laboratory • Lab 8**  
-**Student Roll No:** 202512024  
-**Project:** CampusConnect Microservices Platform  
-**Environment:** Kubernetes (kind / Docker Desktop), GitHub Actions, Prometheus, Grafana, MongoDB Atlas  
+**Student ID:** 202512024  
 
 ---
 
@@ -282,21 +280,4 @@ See [TEST_EVIDENCE.md](file:///d:/DAIICT/Sem-3/WSSOA/Lab/Lab8/202512024_Lab8_Kub
 | **12** | **Traffic** | Monitoring after API traffic generation | `Screenshots/15_Grafana_dashboard_metrics.png` |
 | **13** | **Architecture** | Final architecture diagram | `Screenshots/16_Architecture_Diagram.png` |
 
----
 
-## 8. Final Submission Checklist
-
-- [x] Lab 7 application verified.
-- [x] Kubernetes context and nodes verified.
-- [x] `lab8` namespace created and used.
-- [x] Gateway/User/Product/Order Deployments and Services created.
-- [x] ConfigMap and Secret used appropriately without exposed credentials.
-- [x] Application manifests applied and verified.
-- [x] Gateway tested via Postman / HTTP client.
-- [x] User Service scaled to 3 replicas.
-- [x] Self-healing demonstrated by pod deletion and recreation.
-- [x] Basic GitHub Actions CI workflow created (`.github/workflows/ci.yml`).
-- [x] Prometheus targets and metrics verified (`/metrics`, `up`, `rate(http_requests_total)`).
-- [x] Grafana dashboard created and pre-configured.
-- [x] API traffic generated and observed on monitoring graphs.
-- [x] Complete README and Postman collection updated.
