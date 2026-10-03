@@ -16,11 +16,11 @@
 | **3** | **Manifests** | Gateway, services, configs, and monitoring YAML files | `Screenshots/2_YAML_manifests.png` |
 | **4** | **Deployment** | All Pods, Deployments & Services running (1/1 Ready) in `lab8` | `Screenshots/3_All_Pods_Running_State.png` |
 | **5** | **Gateway Test** | Successful Postman requests via Kubernetes gateway | `Screenshots/6_Get_users.png`<br/>`Screenshots/7_Get_products.png`<br/>`Screenshots/8_Get_orders.png` |
-| **6** | **Scaling** | User Service scaled from 1 to 3 replicas | `Screenshots/9_Kubernetes_Scaling.png` |
-| **7** | **Self-Healing** | Pod deleted and Kubernetes automatically creates replacement | `Screenshots/10_Kubernetes_SelfHealing.png` |
+| **6** | **Scaling** | User Service scaled from 1 to 3 replicas | `Screenshots/10_Kubernetes_Scaling.png` |
+| **7** | **Self-Healing** | Pod deleted and Kubernetes automatically creates replacement | `Screenshots/12_Kubernetes_SelfHealing.png` |
 | **8** | **Troubleshooting** | Diagnostics inspection (`kubectl describe`, `logs`, `endpoints`) | `Screenshots/11_Kubernetes_Inspection_Troubleshooting.png` |
-| **9** | **GitHub Actions CI** | Basic CI workflow run (checkout, test, docker build) | *(Pending push to GitHub)* |
-| **10** | **Prometheus** | Targets page showing `UP (1/1)` and metric PromQL query | `Screenshots/12_Prometheus_targets_page.png`<br/>`Screenshots/13_Prometheus_query_output.png` |
+| **9** | **GitHub Actions CI** | Basic CI workflow run (checkout, test, docker build) | `Screenshots/9_GitHub_Actions_CI_Run.png` |
+| **10** | **Prometheus** | Targets page showing `UP (1/1)` and metric PromQL query | `Screenshots/17_Prometheus_targets_page.png`<br/>`Screenshots/13_Prometheus_query_output.png` |
 | **11** | **Grafana Dashboard** | 4-panel monitoring dashboard answering core questions | `Screenshots/14_Grafana_dashboard.png` |
 | **12** | **Traffic Monitoring** | Grafana dashboard metrics responding to synthetic API traffic | `Screenshots/15_Grafana_dashboard_metrics.png` |
 | **13** | **Architecture Diagram** | Complete end-to-end system architecture | `Screenshots/16_Architecture_Diagram.png` |
@@ -74,13 +74,13 @@ Demonstrates horizontal scaling of the `user-service` deployment from 1 replica 
 ```powershell
 kubectl scale deployment user-service --replicas=3 -n lab8
 ```
-![Kubernetes Scaling](Screenshots/9_Kubernetes_Scaling.png)
+![Kubernetes Scaling](Screenshots/10_Kubernetes_Scaling.png)
 
 ---
 
 ### Evidence 7: Self-Healing Demonstration
 Demonstrates Kubernetes automatically restoring the desired replica count after a pod failure/deletion:
-![Kubernetes Self Healing](Screenshots/10_Kubernetes_SelfHealing.png)
+![Kubernetes Self Healing](Screenshots/12_Kubernetes_SelfHealing.png)
 
 ---
 
@@ -90,10 +90,16 @@ Demonstrates cluster inspection using `kubectl describe`, `kubectl logs`, and `k
 
 ---
 
+### Evidence 9: GitHub Actions CI Pipeline
+Demonstrates automated GitHub Actions CI workflow executing checkout, dependency install, unit tests (`npm test`), and container image builds across all microservices:
+![GitHub Actions CI Pipeline](Screenshots/9_GitHub_Actions_CI_Run.png)
+
+---
+
 ### Evidence 10: Prometheus Targets & PromQL Query
 Demonstrates Prometheus actively scraping the API Gateway metrics endpoint and executing PromQL queries:
-- **Targets Page (`http://localhost:9090/targets`)**: Shows `api-gateway` in **UP (1/1)** state.
-  ![Prometheus Targets](Screenshots/12_Prometheus_targets_page.png)
+- **Targets Page (`http://localhost:9090/targets`)**: Shows `api-gateway` in **UP (1/1)** state:
+  ![Prometheus Targets](Screenshots/17_Prometheus_targets_page.png)
 - **PromQL Query Execution**:
   ![Prometheus Query](Screenshots/13_Prometheus_query_output.png)
 

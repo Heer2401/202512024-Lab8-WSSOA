@@ -264,21 +264,23 @@ This sends a blend of normal requests (`/users`, `/products`, `/orders`, `/healt
 
 ## 7. Submission Evidence & Deliverables Checklist
 
-| No. | Evidence Item | Required Content | Command / Screenshot Location |
+See [TEST_EVIDENCE.md](file:///d:/DAIICT/Sem-3/WSSOA/Lab/Lab8/202512024_Lab8_Kubernetes_CICD_Monitoring/TEST_EVIDENCE.md) for the complete visual report with all screenshots embedded.
+
+| No. | Evidence Item (Manual §7.1) | Required Content | Captured Screenshot Location |
 | :---: | :--- | :--- | :--- |
-| **1** | **Lab 7 Baseline** | Successful gateway request & response | `curl.exe http://localhost:8080/health` |
-| **2** | **Kubernetes Environment** | Current context + available node(s) | `kubectl config current-context`<br/>`kubectl get nodes` |
-| **3** | **Manifests** | Gateway, service and config YAML files | Contents of `k8s/` directory |
-| **4** | **Deployment** | Pods, Deployments and Services in `lab8` | `kubectl get all -n lab8` |
-| **5** | **Gateway Test** | Successful Postman request through K8s gateway | Postman request to `http://localhost:8080/users` |
-| **6** | **Scaling** | User Service scaled to 3 replicas | `kubectl get pods -n lab8 -l app=user-service` |
-| **7** | **Self-Healing** | Deleted Pod followed by new replacement | `kubectl get pods -n lab8` before and after deletion |
-| **8** | **Troubleshooting** | Useful describe, logs, endpoints output | `kubectl describe pod ...`<br/>`kubectl get endpoints -n lab8` |
-| **9** | **GitHub Actions** | Successful basic CI workflow run | GitHub repository Actions tab showing green run |
-| **10** | **Prometheus** | Targets/UP state and at least one query | Prometheus UI at `http://localhost:9090/targets` and graph |
-| **11** | **Grafana** | Monitoring dashboard with 4 panels | Grafana UI at `http://localhost:3000/d/campusconnect-lab8` |
-| **12** | **Traffic** | Monitoring after API traffic generation | Grafana graphs showing spikes after running `generate_traffic.js` |
-| **13** | **Architecture** | Final architecture diagram | Architecture diagram in Section 1 |
+| **1** | **Lab 7 Baseline** | Successful gateway request & response | `Screenshots/5_Get_health.png`<br/>`Screenshots/4_Test_the_APIGateway.png` |
+| **2** | **Kubernetes Environment** | Current context + available node(s) | `Screenshots/1_Verify_Kubernetes_Cluster.png` |
+| **3** | **Manifests** | Gateway, service and config YAML files | `Screenshots/2_YAML_manifests.png` |
+| **4** | **Deployment** | Pods, Deployments and Services in `lab8` | `Screenshots/3_All_Pods_Running_State.png` |
+| **5** | **Gateway Test** | Successful Postman request through K8s gateway | `Screenshots/6_Get_users.png`<br/>`Screenshots/7_Get_products.png`<br/>`Screenshots/8_Get_orders.png` |
+| **6** | **Scaling** | User Service scaled to 3 replicas | `Screenshots/10_Kubernetes_Scaling.png` |
+| **7** | **Self-Healing** | Deleted Pod followed by new replacement | `Screenshots/12_Kubernetes_SelfHealing.png` |
+| **8** | **Troubleshooting** | Useful describe, logs, endpoints output | `Screenshots/11_Kubernetes_Inspection_Troubleshooting.png` |
+| **9** | **GitHub Actions** | Successful basic CI workflow run | `Screenshots/9_GitHub_Actions_CI_Run.png` |
+| **10** | **Prometheus** | Targets/UP state and at least one query | `Screenshots/17_Prometheus_targets_page.png`<br/>`Screenshots/13_Prometheus_query_output.png` |
+| **11** | **Grafana** | Monitoring dashboard with 4 panels | `Screenshots/14_Grafana_dashboard.png` |
+| **12** | **Traffic** | Monitoring after API traffic generation | `Screenshots/15_Grafana_dashboard_metrics.png` |
+| **13** | **Architecture** | Final architecture diagram | `Screenshots/16_Architecture_Diagram.png` |
 
 ---
 
